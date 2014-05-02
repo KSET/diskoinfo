@@ -1,0 +1,24 @@
+from django.conf import settings
+from django.conf.urls import patterns, include, url
+from django.conf.urls.static import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.core.urlresolvers import reverse_lazy
+from django.views.generic import RedirectView
+from filebrowser.sites import site
+
+from django.contrib import admin
+admin.autodiscover()
+
+urlpatterns = patterns('',
+    url(r'^$', RedirectView.as_view(url=reverse_lazy('zapisnik:logentry_list'))),
+    url(r'^zapisnik/', include('zapisnik.urls', namespace='zapisnik', app_name='zapisnik')),
+
+    url(r'^grappelli/', include('grappelli.urls')),
+    url(r'^admin/filebrowser/', include(site.urls)),
+    url(r'^tinymce/', include('tinymce.urls')),
+    url(r'^admin/', include(admin.site.urls)),
+)
+
+# staticfiles_urlpatterns() returns only if DEBUG, static also
+urlpatterns += staticfiles_urlpatterns()
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

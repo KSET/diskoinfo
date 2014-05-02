@@ -1,0 +1,17 @@
+#cv_form fieldset input {
+    width: 80%;
+}
+#cv_form fieldset textarea {
+    width: 80%;
+    height: 8em;
+}
+
+table.table-detail > tbody > tr:first-child > td {
+    border: none;
+}
+table.table-detail > tbody > tr > td:first-child {
+    text-align: right;
+    /*white-space: nowrap;*/
+    padding-right: 15px;
+    width: 160px;
+}
