@@ -1,9 +1,13 @@
 {% extends "base.html" %}
 
 {% block content %}
-  {% for entry in entries %}
-    <h3>{{ entry.date|date:"l, d.m.Y." }}</h3>
-    {{ entry.text|safe }}
-    <hr>
-  {% endfor %}
+  <div class="row">
+    <div class="col-md-12">
+      {% for entry in entries %}
+        <h3>{{ entry.date|date:"l, d.m.Y." }}</h3>
+        {{ entry.text|safe }}
+        <hr>
+      {% endfor %}
+    </div>
+  </div>
 {% endblock %}

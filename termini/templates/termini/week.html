@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-md-12">
+      {% with rows_curr as rows %}
+        {% include "termini/week_table.html" %}
+      {% endwith %}
+    </div>
+  </div>
+  {% if rows_next %}
+    <div class="row">
+      <div class="col-md-12">
+        {% with rows_next as rows %}
+          {% include "termini/week_table.html" %}
+        {% endwith %}
+      </div>
+    </div>
+  {% endif %}
+{% endblock %}

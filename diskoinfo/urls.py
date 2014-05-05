@@ -12,11 +12,15 @@ admin.autodiscover()
 urlpatterns = patterns('',
     url(r'^$', RedirectView.as_view(url=reverse_lazy('zapisnik:logentry_list'))),
     url(r'^zapisnik/', include('zapisnik.urls', namespace='zapisnik', app_name='zapisnik')),
+    url(r'^termini/', include('termini.urls', namespace='termini', app_name='termini')),
 
     url(r'^grappelli/', include('grappelli.urls')),
     url(r'^admin/filebrowser/', include(site.urls)),
     url(r'^tinymce/', include('tinymce.urls')),
     url(r'^admin/', include(admin.site.urls)),
+
+    url(r'^login/$', 'django.contrib.auth.views.login', name='login'),
+    url(r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': '/'}, name='logout'),
 )
 
 # staticfiles_urlpatterns() returns only if DEBUG, static also
