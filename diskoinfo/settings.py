@@ -8,6 +8,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.6/ref/settings/
 """
 from django.conf.global_settings import STATICFILES_FINDERS, TEMPLATE_CONTEXT_PROCESSORS
+from django.core.urlresolvers import reverse_lazy
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -41,10 +42,12 @@ INSTALLED_APPS = (
     'filebrowser',
     'tinymce',
     'compressor',
+    'bootstrapform',
     'django.contrib.admin',
 
     'diskoinfo',
     'zapisnik',
+    'termini',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -140,3 +143,7 @@ TINYMCE_DEFAULT_CONFIG = {
     'theme_advanced_buttons2': "cleanup,code,separator,lists,pasteword,table,contextmenu,media,style,image,link",
     # 'theme_advanced_buttons3': "",
 }
+
+LOGIN_URL = reverse_lazy('login')
+LOGOUT_URL = reverse_lazy('logout')
+LOGIN_REDIRECT_URL = '/'

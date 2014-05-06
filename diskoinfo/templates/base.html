@@ -14,12 +14,14 @@
     {% compress css %}
       <link rel="stylesheet" href="{{ STATIC_URL }}diskoinfo/css/bootstrap.css">
       <link rel="stylesheet" href="{{ STATIC_URL }}diskoinfo/css/bootstrap-theme.css">
+      <link rel="stylesheet" href="{{ STATIC_URL }}diskoinfo/css/base.css">
     {% endcompress %}
 
     {# scripts #}
     {% compress js %}
       <script src="{{ STATIC_URL }}diskoinfo/js/jquery.js"></script>
       <script src="{{ STATIC_URL }}diskoinfo/js/bootstrap.js"></script>
+      <script src="{{ STATIC_URL }}diskoinfo/js/base.js"></script>
     {% endcompress %}
     {% compress js %}
       {% block js %}
@@ -41,7 +43,23 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="{% active request 'zapisnik' %}"><a href="{% url 'zapisnik:logentry_list' %}">Zapisnik</a></li>
-            <li class="{% active request 'termini' %}"><a href="#">Termini</a></li>
+            <li class="{% active request 'termini' %}"><a href="{% url 'termini:shift_week' %}">Termini</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            {% if user.is_authenticated %}
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ user }} <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  {% if user.is_staff %}
+                    <li><a href="{% url 'admin:index' %}"><i class="glyphicon glyphicon-wrench"></i> Admin</a></li>
+                    <li class="divider"></li>
+                  {% endif %}
+                  <li><a href="{% url 'logout' %}"><i class="glyphicon glyphicon-off"></i> Odjava</a></li>
+                </ul>
+              </li>
+            {% else %}
+              <li><a href="{% url 'login' %}">Prijava</a></li>
+            {% endif %}
           </ul>
         </div>
       </div>
