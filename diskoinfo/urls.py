@@ -5,6 +5,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic import RedirectView
 from filebrowser.sites import site
+from django.contrib.auth import views as auth_views
 
 from django.contrib import admin
 admin.autodiscover()
@@ -21,6 +22,8 @@ urlpatterns = patterns('',
 
     url(r'^login/$', 'django.contrib.auth.views.login', name='login'),
     url(r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': '/'}, name='logout'),
+    url(r'^changepwd/$', auth_views.password_change, name='changepwd'),
+    url(r'^changepwd/done/$', auth_views.password_change_done, name='password_change_done'),
 )
 
 # staticfiles_urlpatterns() returns only if DEBUG, static also
