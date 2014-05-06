@@ -19,9 +19,9 @@
         {% for shift in shifts %}
           {% if shift.user %}
             {% if shift.user == user %}
-              <td class="clickable" href="{% url 'termini:shift_add_remove' shift.id %}">{% if shift.name %} {{shift.name|add:":"}} {%endif %} {{ shift.user }}</td>
+              <td class="clickable" href="{% url 'termini:shift_add_remove' shift.id %}">{% if shift.name %}{{shift.name }} :: {% endif %}{{ shift.user }}</td>
             {% else %}
-              <td>{% if shift.name %} {{shift.name|add:":"}} {%endif %} {{ shift.user }}</td>
+              <td>{% if shift.name %}{{shift.name }} :: {% endif %}{{ shift.user }}</td>
             {% endif %}
           {% else %}
             <td class="clickable" href="{% url 'termini:shift_add_remove' shift.id %}"></td>
