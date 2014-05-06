@@ -55,7 +55,6 @@
                     <li class="divider"></li>
                   {% endif %}
                   <li><a href="{% url 'logout' %}"><i class="glyphicon glyphicon-off"></i> Odjava</a></li>
-                  <li><a href="{% url 'changepwd' %}"><i class="glyphicon glyphicon-flash"></i> Promijeni lozinku</a></li>
                 </ul>
               </li>
             {% else %}
