@@ -21,3 +21,10 @@ def flash_msg_tags(msg):
     if msg.tags == 'error':
         return 'alert-%s' % 'danger'
     return 'alert-%s' % msg.tags
+
+@register.simple_tag
+def user_info(user):
+    name = '%s %s' % (user.first_name, user.last_name)
+    if not name.strip():
+        name = user.username
+    return name
