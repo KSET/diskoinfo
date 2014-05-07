@@ -1,10 +1,14 @@
 .DS_Store
 *.db
+*.sqlite3
 *.pyc
 *.pyo
 *.egg-info
 *.svn
+*.*~
 *.sublime-*
 static/*
 media/*
 log/*
+diskoinfo/settings/local.py
+diskoinfo/settings/prod.py
