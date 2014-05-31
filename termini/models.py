@@ -13,6 +13,7 @@ class Shift(models.Model):
     user = models.ForeignKey(User, related_name='shifts', blank=True, null=True)
 
     class Meta:
+        unique_together = ['date', 'category']
         ordering = ['-date', 'category']
         verbose_name = 'Shift'
         verbose_name_plural = 'Shifts'
