@@ -5,7 +5,7 @@ from django.utils import timezone
 
 
 class Shift(models.Model):
-    CATEGORIES  = ((1, u'Prvi'), (2, u'Drugi'), (3, u'Treći'), (4, u'Večernji'))
+    CATEGORIES = ((1, u'Prvi'), (2, u'Drugi'), (3, u'Treći'), (4, u'Večernji'))
 
     name = models.CharField(max_length=100, default='', blank=True, null=True)
     date = models.DateField(default=timezone.now)
