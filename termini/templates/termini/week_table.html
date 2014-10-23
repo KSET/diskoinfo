@@ -1,34 +1,34 @@
 {% load base_extras %}
 
 <table class="table table-bordered">
-  <thead>
+    <thead>
     <tr>
-      <td></td>
-      <td>Pon &nbsp;{{ rows.0.1.0.date|date:"d.m." }}</td>
-      <td>Uto &nbsp;{{ rows.0.1.1.date|date:"d.m." }}</td>
-      <td>Sri &nbsp;{{ rows.0.1.2.date|date:"d.m." }}</td>
-      <td>Čet &nbsp;{{ rows.0.1.3.date|date:"d.m." }}</td>
-      <td>Pet &nbsp;{{ rows.0.1.4.date|date:"d.m." }}</td>
-      <td>Sub &nbsp;{{ rows.0.1.5.date|date:"d.m." }}</td>
-      <td>Ned &nbsp;{{ rows.0.1.6.date|date:"d.m." }}</td>
+        <td></td>
+        <td>Pon &nbsp;{{ rows.0.1.0.date|date:"d.m." }}</td>
+        <td>Uto &nbsp;{{ rows.0.1.1.date|date:"d.m." }}</td>
+        <td>Sri &nbsp;{{ rows.0.1.2.date|date:"d.m." }}</td>
+        <td>Čet &nbsp;{{ rows.0.1.3.date|date:"d.m." }}</td>
+        <td>Pet &nbsp;{{ rows.0.1.4.date|date:"d.m." }}</td>
+        <td>Sub &nbsp;{{ rows.0.1.5.date|date:"d.m." }}</td>
+        <td>Ned &nbsp;{{ rows.0.1.6.date|date:"d.m." }}</td>
     </tr>
-  </thead>
-  <tbody>
+    </thead>
+    <tbody>
     {% for row_name, shifts in rows %}
-      <tr>
-        <td>{{ row_name }}</td>
-        {% for shift in shifts %}
-          {% if shift.user %}
-            {% if shift.user == user %}
-              <td class="clickable" href="{% url 'termini:shift_add_remove' shift.id %}">{% if shift.name %}{{ shift.name }}<br>{% endif %}{% user_info shift.user %}</td>
-            {% else %}
-              <td>{% if shift.name %}{{ shift.name }}<br>{% endif %}{% user_info shift.user %}</td>
-            {% endif %}
-          {% else %}
-            <td class="clickable" href="{% url 'termini:shift_add_remove' shift.id %}">{{ shift.name|default:"" }}</td>
-          {% endif %}
-        {% endfor %}
-      </tr>
+        <tr>
+            <td>{{ row_name }}</td>
+            {% for shift in shifts %}
+                {% if shift.user %}
+                    {% if user in shift.user.all or shift.user.count < shift.usernum %}
+                        <td class="clickable" href="{% url 'termini:shift_add_remove' shift.id %}">{% if shift.name %}{{ shift.name }}<br>{% endif %}{% for usr in shift.user.all %}{% user_info usr %}<br>{% endfor %}</td>
+                    {% else %}
+                        <td>{% if shift.name %}{{ shift.name }}<br>{% endif %}{% for usr in shift.user.all %}{% user_info usr %}<br>{% endfor %}</td>
+                    {% endif %}
+                {% else %}
+                    <td class="clickable" href="{% url 'termini:shift_add_remove' shift.id %}">{{ shift.name|default:"" }}</td>
+                {% endif %}
+            {% endfor %}
+        </tr>
     {% endfor %}
-  </tbody>
+    </tbody>
 </table>

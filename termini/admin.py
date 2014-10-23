@@ -5,7 +5,7 @@ from termini.models import Shift
 from termini.utils import week_dates
 
 class ShiftAdmin(admin.ModelAdmin):
-    list_display = ('date', 'category', 'user', 'name')
+    list_display = ('date', 'category', 'get_users', 'name', 'usernum')
     search_fields = ('name',)
 
     list_filter = ['date', 'category', 'user__username']
