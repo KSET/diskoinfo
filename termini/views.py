@@ -30,9 +30,13 @@ def shift_week(request):
 @login_required
 def shift_add_remove(request, shift_id):
     shift = get_object_or_404(Shift, id=shift_id)
-    if shift.user and shift.user != request.user:
-        raise PermissionDenied
 
-    shift.user = request.user if not shift.user else None
+    if shift.user.count() == shift.usernum and not shift.user.filter(username=request.user).exists():
+        raise PermissionDenied
+    elif shift.user.filter(username=request.user).exists():
+        shift.user.remove(request.user)
+    else:
+        shift.user.add(request.user)
+
     shift.save()
     return redirect('termini:shift_week')
