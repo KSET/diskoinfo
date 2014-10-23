@@ -1,3 +1,5 @@
 Web app for disco section.
 
-Author: [Andro Rezic](https://github.com/droan)
+Authors:
+[Andro Rezic](https://github.com/droan)
+[Filip Suste](https://github.com/Narayanan170)
