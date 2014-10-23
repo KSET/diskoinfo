@@ -5,3 +5,11 @@ $(document).ready(function() {
         return false;
     });
 });
+
+function validateForm() {
+    var x = document.forms["form"]["name"].value;
+    if (x == null || x == "") {
+        alert("Komentar ne smije biti prazan");
+        return false;
+    }
+}
