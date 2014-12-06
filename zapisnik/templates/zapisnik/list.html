@@ -8,6 +8,7 @@
         <h3>{{ entry.date|date:"l, d.m.Y." }}</h3>
         {{ entry.text|safe }}
         <br>
+        <label for="entry_comment"><h3>Komentari:</h3></label>
         {% for comment in entry.logcomment_set.all %}
           <div class="row">
             <div class="col-md-10">
