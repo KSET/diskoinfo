@@ -2,16 +2,17 @@
 {% load base_extras %}
 
 {% block content %}
-    <div class="row">
+    <div class="row" xmlns="http://www.w3.org/1999/html">
         <div class="col-md-12">
             {% for entry in entries %}
                 <h3>{{ entry.date|date:"l, d.m.Y." }}</h3>
                 {{ entry.text|safe }}
+                <label for="entry_comment"><h3>Komentari:</h3></label>
                 <br>
                 {% for comment in entry.logcomment_set.all %}
                     <div class="row">
                         <div class="col-md-10">
-                            <b>{% user_info comment.author %}</b>: {{ comment.comment_text|safe }}
+                            <strong>{% user_info comment.author %}</strong>: {{ comment.comment_text|safe }}
                         </div>
                         <div class="col-md-2">
                             {% if user == comment.author or user.is_staff %}
@@ -21,10 +22,10 @@
                         </div>
                     </div>
                 {% endfor %}
+                <br>
                 <form role="form" name="form" action="{% url 'zapisnik:add_comment' entry.id %}" method="post">
                     {% csrf_token %}
                     <div class="form-group">
-                        <label for="entry_comment"><h3>Komentari:</h3></label>
                         <div class="input-group">
                             <input type="text" id="komentar" name="comment" class="form-control" id="entry_comment" placeholder="Svoj komentar upisi ovdje">
                             <span class="input-group-btn">

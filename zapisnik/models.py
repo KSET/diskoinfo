@@ -23,5 +23,8 @@ class LogComment(models.Model):
     comment_text = models.CharField(max_length=500)
     author = models.ForeignKey(User)
 
+    class Meta:
+        ordering = ['id']
+
     def __unicode__(self):
         return self.author.join(" ").join(self.comment_text)
